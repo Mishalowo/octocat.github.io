@@ -1,0 +1,267 @@
+[
+  {
+    "id": 1,
+    "name": "Классический донер",
+    "price": 250,
+    "image": "61641031.jpg.webp",
+    "category": "doners",
+    "description": "Классический донер с курицей, свежими овощами и фирменным соусом"
+  },
+  {
+    "id": 2,
+    "name": "Донер веган",
+    "price": 270,
+    "image": "69723175.jpg.webp",
+    "category": "doners",
+    "description": "Веганский донер с овощными котлетами, авокадо и соусом тахини"
+  },
+  {
+    "id": 3,
+    "name": "Донер Street",
+    "price": 280,
+    "image": "89756236.jpg (1).webp",
+    "category": "doners",
+    "description": "Уличный вариант с острым соусом и маринованными овощами"
+  },
+  {
+    "id": 4,
+    "name": "Донер с сосиской",
+    "price": 290,
+    "image": "Rectangle 3.png",
+    "category": "doners",
+    "description": "Донер с охотничьими колбасками, сыром и грибами"
+  },
+  {
+    "id": 5,
+    "name": "Грибной донер",
+    "price": 230,
+    "image": "Rectangle 4.png",
+    "category": "doners",
+    "description": "С шампиньонами, сыром и сливочным соусом"
+  },
+  {
+    "id": 6,
+    "name": "Королевский донер",
+    "price": 350,
+    "image": "Rectangle 5.png",
+    "category": "doners",
+    "description": "Большой донер с тремя видами мяса и двойной порцией овощей"
+  },
+  {
+    "id": 7,
+    "name": "Донер Комбо",
+    "price": 450,
+    "image": "038186e63d86f1a9fdb250783fcad234.jpg",
+    "category": "combo",
+    "description": "Донер + картофель фри + напиток на выбор"
+  },
+  {
+    "id": 26,
+    "name": "Веган Комбо",
+    "price": 480,
+    "image": "Vegan.webp",
+    "category": "combo",
+    "description": "Два веган донера + два напитка"
+  },
+  {
+    "id": 27,
+    "name": "Стрит Комбо",
+    "price": 520,
+    "image": "XXL_height.webp",
+    "category": "combo",
+    "description": "Донер Street + наггетсы + картофель фри + газировка"
+  },
+   {
+    "id": 30,
+    "name": "КомбоXXX",
+    "price": 520,
+    "image": "maxresdefault (2).jpg",
+    "category": "combo",
+    "description": "Грибной донер + Донер с сосиской + Классический донер + газировка"
+  },
+  {
+    "id": 9,
+    "name": "Картофель фри",
+    "price": 150,
+    "image": "13310809.jpg",
+    "category": "snacks",
+    "description": "Хрустящий картофель фри с сырным соусом"
+  },
+  {
+    "id": 10,
+    "name": "Луковые кольца",
+    "price": 180,
+    "image": "i.webp",
+    "category": "snacks",
+    "description": "Хрустящие луковые кольца в панировке"
+  },
+  {
+    "id": 11,
+    "name": "Наггетсы",
+    "price": 200,
+    "image": "1440x1082.jpg",
+    "category": "snacks",
+    "description": "Куриные наггетсы (6 шт.) с соусом"
+  },
+  {
+    "id": 28,
+    "name": "Сырные палочки",
+    "price": 220,
+    "image": "100061715487b0.webp",
+    "category": "snacks",
+    "description": "Хрустящие сырные палочки в панировке (8 шт.)"
+  },
+  {
+    "id": 29,
+    "name": "Картофель по-деревенски",
+    "price": 170,
+    "image": "maxresdefault (1).jpg",
+    "category": "snacks",
+    "description": "Запеченный картофель с травами и сметанным соусом"
+  },
+  {
+    "id": 12,
+    "name": "Кола",
+    "price": 120,
+    "image": "2093073-1-800Wx800H.webp",
+    "category": "drinks",
+    "description": "Coca-Cola 0.5л"
+  },
+  {
+    "id": 13,
+    "name": "Фанта",
+    "price": 120,
+    "image": "b40e746b60d8f0506aa4c666b7c77c86---jpeg_1000x_103c0_convert.jpeg",
+    "category": "drinks",
+    "description": "Fanta 0.5л"
+  },
+  {
+    "id": 14,
+    "name": "Спрайт",
+    "price": 120,
+    "image": "dobryy-sprayt-1l.jpg",
+    "category": "drinks",
+    "description": "Sprite 0.5л"
+  },
+  {
+    "id": 30,
+    "name": "Сок яблочный",
+    "price": 110,
+    "image": "100040809863b0.webp",
+    "category": "drinks",
+    "description": "Яблочный сок, 0.33л"
+  },
+  {
+    "id": 31,
+    "name": "Морс ягодный",
+    "price": 130,
+    "image": "Tr2TXDpmrwlvKsM98dcTUBPDN3DGeGEyCvgFqHiaTzE7J1l4KGtAVpgtoNrqWMr67pxRPQfx5G3mMGP9bDAUCdutRwxt928IKjgBrvdUF1VAxGe1lv4gM9y7EDJjE5IttK2Vp3U0SkSZOqFP7R5b_qETAKfDbPBxJjzk-DWuA5oEstjTd7hgBWI8TL3439dUgAs6PN5zNHUGZ4H14V4XY.webp",
+    "category": "drinks",
+    "description": "Домашний ягодный морс, 0.4л"
+  },
+  {
+    "id": 16,
+    "name": "Чизкейк",
+    "price": 220,
+    "image": "Tr2TXDpmrwlvKsM98dcTUBPDN3DGeGEyCvgQKLrPDiX781l5KerVF42vNI-rTUqvLojGvBIxcC2n8aP9bDBWyxsuxg7t928IKjgBrvdUF1VAxGe1lv4gM9y7EDJjE5IttK2Vp3U0SkSZOqFP7R5b_qETAKfDbPBxJjzk-DWuA5oEstjTd7hgBWI8TL3439dUgAs6PN5zNHUGZ4H14V4XY.webp",
+    "category": "desserts",
+    "description": "Классический нью-йоркский чизкейк"
+  },
+  {
+    "id": 17,
+    "name": "Ягодка",
+    "price": 250,
+    "image": "1440x1082 (1).jpg",
+    "category": "desserts",
+    "description": "Нежный чизкейк с ягодным топпингом"
+  },
+  {
+    "id": 18,
+    "name": "Тирамису",
+    "price": 240,
+    "image": "c862b999-d455-438f-bcfb-befefbb9e30c.webp",
+    "category": "desserts",
+    "description": "Итальянский десерт с кофейным вкусом"
+  },
+  {
+    "id": 19,
+    "name": "Чизкейк Орео",
+    "price": 260,
+    "image": "oreo.webp",
+    "category": "desserts",
+    "description": "Чизкейк с крошкой печенья Oreo"
+  },
+  {
+    "id": 32,
+    "name": "Детский донер",
+    "price": 180,
+    "image": "ролл цезарь.jpg",
+    "category": "kids",
+    "description": "Маленький донер с курицей, без острых соусов"
+  },
+  {
+    "id": 33,
+    "name": "Детские наггетсы",
+    "price": 160,
+    "image": "c8ca4f2984d316aa10b44a5d591b3d62.jpeg",
+    "category": "kids",
+    "description": "Куриные наггетсы (4 шт.) с картофелем фри"
+  },
+  {
+    "id": 34,
+    "name": "Мини-пицца",
+    "price": 220,
+    "image": "picca_s_kukuruzoi_i_vetchinoi-91076.jpg",
+    "category": "kids",
+    "description": "Маленькая пицца с курицей и кукурузой"
+  },
+  {
+    "id": 35,
+    "name": "Панкейки с бананом",
+    "price": 190,
+    "image": "og_og_1684146580277433899.jpg",
+    "category": "kids",
+    "description": "Сладкие панкейки с бананом и шоколадным сиропом"
+  },
+  
+  {
+    "id": 21,
+    "name": "Сырный соус",
+    "price": 50,
+    "image": "sous-syrnyj-vidnoe-768x512-jpeg.webp",
+    "category": "sauces",
+    "description": "Сливочный сырный соус"
+  },
+  {
+    "id": 22,
+    "name": "Чесночный соус",
+    "price": 50,
+    "image": "48786261.jpg",
+    "category": "sauces",
+    "description": "Традиционный чесночный соус"
+  },
+  {
+    "id": 23,
+    "name": "Кисло-сладкий соус",
+    "price": 50,
+    "image": "5cd5cb9995c396fcb702db4cacc468a0.jpg",
+    "category": "sauces",
+    "description": "Кисло-сладкий соус по-азиатски"
+  },
+  {
+    "id": 24,
+    "name": "Острый соус",
+    "price": 50,
+    "image": "maxresdefault.jpg",
+    "category": "sauces",
+    "description": "Острый соус с перчиком чили"
+  },
+  {
+    "id": 25,
+    "name": "Барбекю соус",
+    "price": 50,
+    "image": "Barbi.webp",
+    "category": "sauces",
+    "description": "Копченый соус барбекю"
+  }
+]
