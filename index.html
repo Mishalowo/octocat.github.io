@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Донер-Хаус | Главная</title>
+    <link rel="stylesheet" type="text/css" href="css/Донер.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/vue-components.js" defer></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <div class="header-container">
+        <header class="header-grid">
+            <div class="up-header">
+                <nav class="nav-links">
+                    <a class="nav-link" href="jobs.html">Работа у нас</a>
+                    <a class="nav-link" href="about.html">О нас</a>
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                    <a class="nav-link" href="certificates.html">Сертификаты</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="center-header">
+                <div class="logo-container">
+                    <img src="4627023.png" alt="Донер-Хаус" id="logo">
+                    <p class="logo-text">Донер-Хаус</p>
+                </div>
+                <nav class="nav-links">
+                    <a class="nav-link" href="donercoins.html">Донеркоины</a>
+                    <a class="nav-link" href="#" id="auth-link">Вход</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="down-header">
+                <div class="nav-links">
+                    <a class="nav-link" href="#" data-category="doners">Донеры</a>
+                    <a class="nav-link" href="#" data-category="combo">Комбо</a>
+                    <a class="nav-link" href="#" data-category="snacks">Закуски</a>
+                    <a class="nav-link" href="#" data-category="drinks">Напитки</a>
+                    <a class="nav-link" href="#" data-category="desserts">Десерты</a>
+                    <a class="nav-link" href="#" data-category="sauces">Соусы</a>
+             
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#">Ещё</a>
+                        <div class="dropdown-content">
+                            <a class="dropdown-link" href="#" data-category="kids">Детское меню</a>
+                            <a class="dropdown-link" href="#" data-category="favorites">Любимое</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Корзина в правом углу -->
+                    <div class="cart-button-container">
+                        <a class="nav-link cart-button" href="#" id="cart-button">Корзина</a>
+                        <div class="cart-badge empty" id="cart-badge">
+                            <span class="cart-count">0</span>
+                            <span class="cart-total-sum">0 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Слайдер -->
+    <div class="auto-slider">
+        <div class="slider-container">
+            <div class="slider-track">
+                <!-- Картинки будут добавлены динамически через JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Заголовок товаров -->
+    <div class="slider-title">
+        <h2 id="category-title">Донеры</h2>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="content-container">
+        <!-- Левое меню -->
+        <div class="left-menu" id="left-menu">
+            <h3>Меню</h3>
+            <ul>
+                <li><a href="#" data-category="all" class="active">Всё</a></li>
+                <li><a href="#" data-category="doners">Донеры</a></li>
+                <li><a href="#" data-category="combo">Комбо</a></li>
+                <li><a href="#" data-category="snacks">Закуски</a></li>
+                <li><a href="#" data-category="drinks">Напитки</a></li>
+                <li><a href="#" data-category="desserts">Десерты</a></li>
+                <li><a href="#" data-category="sauces">Соусы</a></li>
+                <li><a href="#" data-category="kids">Детское меню</a></li>
+                <li><a href="#" data-category="favorites">Любимое</a></li>
+                
+                <!-- Управление товарами (только для админа) -->
+                <div class="admin-section" id="admin-section" style="display: none;">
+                    <h4>Управление товарами</h4>
+                    <div class="admin-links">
+                        <a href="#" id="admin-panel-link">Управление товарами</a>
+                    </div>
+                </div>
+            </ul>
+        </div>
+
+        <!-- Товары -->
+        <div class="products-grid" id="products-container">
+            <div class="loading-products">
+                <div class="spinner"></div>
+                <p>Загружаем меню...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Доставка и оплата -->
+    <div class="delivery-payment">
+        <h2>Доставка и оплата</h2>
+        <div class="delivery-payment-content">
+            <div class="payment-info">
+                <h3>Оплата</h3>
+                <p><i class="fas fa-money-bill-wave"></i> Наличными курьеру</p>
+                <p><i class="fas fa-credit-card"></i> Банковский перевод</p>
+                <p><i class="fas fa-mobile-alt"></i> Картой онлайн</p>
+                <p>Оформление заказа:</p>
+                <p>Оформить заказ можно на сайте через корзину или просто позвоните нам по телефону <strong>8-900-123-45-67</strong> или <strong>8-900-765-43-21</strong> и сообщите заказ оператору.</p>
+                <button class="call-button"><i class="fas fa-phone"></i> Позвонить</button>
+            </div>
+            <div class="delivery-info">
+                <h3>Доставка</h3>
+                <p><i class="fas fa-shopping-bag"></i> Минимальный заказ:</p>
+                <p><strong>от 500 рублей</strong></p>
+                <p><i class="fas fa-clock"></i> Время и дни доставки:</p>
+                <p>Мы работаем для Вас без выходных и праздников</p>
+                <p>Время доставки с 10:00-22:00.</p>
+                <p><i class="fas fa-store"></i> Самовывоз предусмотрен из кафе: Рязань, ул. Ленина, 123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue компонент: Отзывы о товарах -->
+    <div id="product-reviews-app" class="vue-component">
+        <product-reviews></product-reviews>
+    </div>
+
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Каталог</h3>
+                <ul>
+                    <li><a href="#" data-category="doners">Донеры</a></li>
+                    <li><a href="#" data-category="combo">Комбо</a></li>
+                    <li><a href="#" data-category="snacks">Закуски</a></li>
+                    <li><a href="#" data-category="drinks">Напитки</a></li>
+                    <li><a href="#" data-category="desserts">Десерты</a></li>
+                    <li><a href="#" data-category="sauces">Соусы</a></li>
+                    <li><a href="#" data-category="kids">Детское меню</a></li>
+                    <li><a href="#" data-category="favorites">Любимое</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Покупателям</h3>
+                <ul>
+                    <li><a href="jobs.html">Работа у нас</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="certificates.html">Сертификаты</a></li>
+                    <li><a href="donercoins.html">Донеркоины</a></li>
+                    <li><a href="#" id="auth-footer">Вход</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> Напиши нам:</p>
+                <p class="email">ksyu.nazarova.05@mail.ru</p>
+                <div class="footer-logo">
+                    <img src="4627023.png" alt="Донер-Хаус">
+                    <span>Донер-Хаус</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="social-networks">
+                <span>Мы в социальных сетях:</span>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-vk"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

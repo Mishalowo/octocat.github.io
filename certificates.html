@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сертификаты | Донер-Хаус</title>
+    <link rel="stylesheet" type="text/css" href="css/Донер.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <!-- Шапка -->
+    <div class="header-container">
+        <header class="header-grid">
+            <div class="up-header">
+                <nav class="nav-links">
+                    <a class="nav-link" href="jobs.html">Работа у нас</a>
+                    <a class="nav-link" href="about.html">О нас</a>
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                    <a class="nav-link active" href="certificates.html">Сертификаты</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="center-header">
+                <div class="logo-container">
+                    <a href="index.html"><img src="4627023.png" alt="Донер-Хаус"></a>
+                    <p class="logo-text">Донер-Хаус</p>
+                </div>
+                <nav class="nav-links">
+                    <a class="nav-link" href="donercoins.html">Донеркоины</a>
+                    <a class="nav-link" href="#" id="auth-link">Вход</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="down-header">
+                <div class="nav-links">
+                    <a class="nav-link" href="index.html">Донеры</a>
+                    <a class="nav-link" href="index.html">Комбо</a>
+                    <a class="nav-link" href="index.html">Закуски</a>
+                    <a class="nav-link" href="index.html">Напитки</a>
+                    <a class="nav-link" href="index.html">Десерты</a>
+                    <a class="nav-link" href="index.html">Соусы</a>
+                    
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#">Ещё</a>
+                        <div class="dropdown-content">
+                            <a class="dropdown-link" href="index.html">Детское меню</a>
+                            <a class="dropdown-link" href="index.html">Любимое</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Корзина в правом углу -->
+                    <div class="cart-button-container">
+                        <a class="nav-link cart-button" href="#" id="cart-button">Корзина</a>
+                        <div class="cart-badge empty" id="cart-badge">
+                            <span class="cart-count">0</span>
+                            <span class="cart-total-sum">0 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Контент страницы -->
+    <div class="page-content">
+        <h1><i class="fas fa-award"></i> Наши сертификаты</h1>
+        
+        <div class="section-bg">
+            <p style="text-align: center; font-size: 18px;">
+                Качество и безопасность нашей продукции подтверждены всеми необходимыми сертификатами 
+                и соответствуют требованиям ГОСТ и СанПиН.
+            </p>
+        </div>
+        
+        <h2><i class="fas fa-certificate"></i> Сертификаты качества</h2>
+        <div class="certificates-grid">
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-file-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3>Сертификат соответствия ГОСТ</h3>
+                    <div class="certificate-date">Выдан: 15.03.2023 | Действителен до: 15.03.2026</div>
+                    <p class="certificate-desc">Подтверждает соответствие нашей продукции государственным стандартам качества.</p>
+                </div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3>Сертификат САНПИН</h3>
+                    <div class="certificate-date">Выдан: 20.02.2023 | Действителен до: 20.02.2026</div>
+                    <p class="certificate-desc">Подтверждает соблюдение санитарно-эпидемиологических норм.</p>
+                </div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3>Экологический сертификат</h3>
+                    <div class="certificate-date">Выдан: 10.01.2023 | Действителен до: 10.01.2026</div>
+                    <p class="certificate-desc">Подтверждает использование экологически чистых материалов и упаковки.</p>
+                </div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3>Сертификат ХАССП</h3>
+                    <div class="certificate-date">Выдан: 05.12.2022 | Действителен до: 05.12.2025</div>
+                    <p class="certificate-desc">Система анализа опасных факторов и критических контрольных точек.</p>
+                </div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3>ISO 9001:2015</h3>
+                    <div class="certificate-date">Выдан: 25.11.2022 | Действителен до: 25.11.2025</div>
+                    <p class="certificate-desc">Международный стандарт системы менеджмента качества.</p>
+                </div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3>Сертификат поставщиков</h3>
+                    <div class="certificate-date">Выдан: 30.10.2022 | Действителен до: 30.10.2025</div>
+                    <p class="certificate-desc">Подтверждает качество сырья от наших поставщиков.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-bg">
+            <h3><i class="fas fa-info-circle"></i> Что означают наши сертификаты?</h3>
+            <p>Наличие сертификатов подтверждает, что:</p>
+            <ul>
+                <li>Вся продукция изготавливается из качественного и безопасного сырья</li>
+                <li>Производственные процессы соответствуют санитарным нормам</li>
+                <li>Сотрудники регулярно проходят медицинские осмотры</li>
+                <li>Помещения соответствуют требованиям для предприятий общепита</li>
+                <li>Используется сертифицированное оборудование</li>
+                <li>Ведется строгий контроль на всех этапах производства</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3><i class="fas fa-eye"></i> Где можно посмотреть оригиналы?</h3>
+            <p>Оригиналы всех сертификатов находятся в нашем центральном кафе по адресу: <strong>ул. Ленина, 123</strong>.</p>
+            <p>Вы можете ознакомиться с ними в любое время работы кафе. Также копии сертификатов предоставляются по запросу контролирующим органам и партнерам.</p>
+        </div>
+        
+        <div class="info-card">
+            <h3><i class="fas fa-question-circle"></i> Частые вопросы</h3>
+            
+            <h4>Как часто обновляются сертификаты?</h4>
+            <p>Все сертификаты обновляются каждые 3 года, некоторые - ежегодно. Мы строго следим за сроками действия.</p>
+            
+            <h4>Проверяете ли вы поставщиков?</h4>
+            <p>Да, все наши поставщики также имеют необходимые сертификаты качества. Мы работаем только с проверенными партнерами.</p>
+            
+            <h4>Есть ли у вас сертификат на доставку?</h4>
+            <p>Да, наша служба доставки имеет все необходимые разрешения и сертификаты для перевозки продуктов питания.</p>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Меню</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html">Донеры</a></li>
+                    <li><a href="index.html">Комбо</a></li>
+                    <li><a href="index.html">Закуски</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="jobs.html">Работа у нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="certificates.html">Сертификаты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> Для запросов:</p>
+                <p class="email">certificates@doner-house.ru</p>
+                <div class="footer-logo">
+                    <img src="4627023.png" alt="Донер-Хаус">
+                    <span>Донер-Хаус</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="social-networks">
+                <span>Мы в соцсетях:</span>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-vk"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

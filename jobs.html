@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа у нас | Донер-Хаус</title>
+    <link rel="stylesheet" type="text/css" href="css/Донер.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <!-- Шапка -->
+    <div class="header-container">
+        <header class="header-grid">
+            <div class="up-header">
+                <nav class="nav-links">
+                    <a class="nav-link active" href="jobs.html">Работа у нас</a>
+                    <a class="nav-link" href="about.html">О нас</a>
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                    <a class="nav-link" href="certificates.html">Сертификаты</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="center-header">
+                <div class="logo-container">
+                    <a href="index.html"><img src="4627023.png" alt="Донер-Хаус"></a>
+                    <p class="logo-text">Донер-Хаус</p>
+                </div>
+                <nav class="nav-links">
+                    <a class="nav-link" href="donercoins.html">Донеркоины</a>
+                    <a class="nav-link" href="#" id="auth-link">Вход</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="down-header">
+                <div class="nav-links">
+                    <a class="nav-link" href="index.html">Донеры</a>
+                    <a class="nav-link" href="index.html">Комбо</a>
+                    <a class="nav-link" href="index.html">Закуски</a>
+                    <a class="nav-link" href="index.html">Напитки</a>
+                    <a class="nav-link" href="index.html">Десерты</a>
+                    <a class="nav-link" href="index.html">Соусы</a>
+                    
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#">Ещё</a>
+                        <div class="dropdown-content">
+                            <a class="dropdown-link" href="index.html">Детское меню</a>
+                            <a class="dropdown-link" href="index.html">Любимое</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Корзина в правом углу -->
+                    <div class="cart-button-container">
+                        <a class="nav-link cart-button" href="#" id="cart-button">Корзина</a>
+                        <div class="cart-badge empty" id="cart-badge">
+                            <span class="cart-count">0</span>
+                            <span class="cart-total-sum">0 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Контент страницы -->
+    <div class="page-content">
+        <h1><i class="fas fa-briefcase"></i> Работа в Донер-Хаус</h1>
+        
+        <div class="jobs-hero">
+            <h2 class="hero-title">Стань частью нашей команды!</h2>
+            <p class="hero-subtitle">Мы растем и ищем талантливых людей, которые любят свою работу и готовы развиваться вместе с нами.</p>
+        </div>
+        
+        <h2><i class="fas fa-list"></i> Открытые вакансии</h2>
+        <div class="vacancies-list">
+            <div class="vacancy-card">
+                <h3 class="vacancy-title">Повар донеров</h3>
+                <div class="vacancy-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Рязань</span>
+                    <span><i class="fas fa-clock"></i> Полный день</span>
+                    <span><i class="fas fa-briefcase"></i> Опыт от 1 года</span>
+                </div>
+                <p class="vacancy-description">Приготовление донеров по фирменным рецептам, работа с грилем, поддержание чистоты на рабочем месте.</p>
+                <div class="vacancy-salary">от 45 000 ₽</div>
+                <button class="apply-btn cta-button" data-position="Повар донеров">Откликнуться</button>
+            </div>
+            
+            <div class="vacancy-card">
+                <h3 class="vacancy-title">Курьер</h3>
+                <div class="vacancy-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Рязань</span>
+                    <span><i class="fas fa-clock"></i> Сменный график</span>
+                    <span><i class="fas fa-car"></i> Авто/вело</span>
+                </div>
+                <p class="vacancy-description">Доставка заказов клиентам, прием оплаты, работа с навигатором, соблюдение стандартов сервиса.</p>
+                <div class="vacancy-salary">от 40 000 ₽ + чаевые</div>
+                <button class="apply-btn cta-button" data-position="Курьер">Откликнуться</button>
+            </div>
+            
+            <div class="vacancy-card">
+                <h3 class="vacancy-title">Менеджер зала</h3>
+                <div class="vacancy-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Рязань</span>
+                    <span><i class="fas fa-clock"></i> Полный день</span>
+                    <span><i class="fas fa-briefcase"></i> Опыт от 2 лет</span>
+                </div>
+                <p class="vacancy-description">Управление работой зала, контроль качества обслуживания, работа с персоналом, решение вопросов клиентов.</p>
+                <div class="vacancy-salary">от 55 000 ₽</div>
+                <button class="apply-btn cta-button" data-position="Менеджер зала">Откликнуться</button>
+            </div>
+            
+            <div class="vacancy-card">
+                <h3 class="vacancy-title">Кассир-администратор</h3>
+                <div class="vacancy-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Рязань</span>
+                    <span><i class="fas fa-clock"></i> Сменный график</span>
+                    <span><i class="fas fa-user-graduate"></i> Обучение</span>
+                </div>
+                <p class="vacancy-description">Прием заказов, работа с кассой, консультация клиентов, поддержание чистоты в зале.</p>
+                <div class="vacancy-salary">от 35 000 ₽</div>
+                <button class="apply-btn cta-button" data-position="Кассир-администратор">Откликнуться</button>
+            </div>
+        </div>
+        
+        <div class="benefits-section section-bg">
+            <h2><i class="fas fa-gift"></i> Что мы предлагаем</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h4>Конкурентная зарплата</h4>
+                    <p>Своевременные выплаты, премии и бонусы</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>Обучение</h4>
+                    <p>Обучаем с нуля, оплачиваем курсы повышения квалификации</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-utensils"></i></div>
+                    <h4>Питание</h4>
+                    <p>Бесплатное питание в течение смены</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Медстраховка</h4>
+                    <p>Добровольное медицинское страхование</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>Карьерный рост</h4>
+                    <p>Возможность вырасти от стажера до управляющего</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h4>График</h4>
+                    <p>Гибкий график, возможность подработки</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="application-form" style="display: none;">
+            <h2><i class="fas fa-file-alt"></i> Заполните заявку</h2>
+            
+            <form id="job-application-form">
+                <div class="form-group">
+                    <label for="applicant-name">ФИО *</label>
+                    <input type="text" id="applicant-name" required placeholder="Иванов Иван Иванович">
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant-email">Email *</label>
+                    <input type="email" id="applicant-email" required placeholder="ivan@example.ru">
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant-phone">Телефон *</label>
+                    <input type="tel" id="applicant-phone" required placeholder="8-900-123-45-67">
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant-position">На какую позицию? *</label>
+                    <input type="text" id="applicant-position" required readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant-experience">Опыт работы</label>
+                    <textarea id="applicant-experience" rows="3" placeholder="Опишите ваш опыт работы..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant-message">Почему вы хотите работать у нас?</label>
+                    <textarea id="applicant-message" rows="4" placeholder="Расскажите о себе..."></textarea>
+                </div>
+                
+                <button type="submit" class="cta-button" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Отправить заявку
+                </button>
+                
+                <button type="button" id="cancel-application" class="btn" style="width: 100%; margin-top: 15px;">
+                    Отмена
+                </button>
+            </form>
+            
+            <div id="application-success" class="success-message">
+                <i class="fas fa-check-circle"></i> Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение 3 рабочих дней.
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h3><i class="fas fa-question-circle"></i> Как проходит отбор?</h3>
+            <ol>
+                <li>Вы отправляете заявку через сайт</li>
+                <li>Наш HR-специалист связывается с вами в течение 3 дней</li>
+                <li>Собеседование с руководителем отдела</li>
+                <li>Пробный день (оплачивается)</li>
+                <li>Оформление и обучение</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Меню</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html">Донеры</a></li>
+                    <li><a href="index.html">Комбо</a></li>
+                    <li><a href="index.html">Закуски</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="jobs.html">Работа у нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="certificates.html">Сертификаты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> Для резюме:</p>
+                <p class="email">hr@doner-house.ru</p>
+                <div class="footer-logo">
+                    <img src="4627023.png" alt="Донер-Хаус">
+                    <span>Донер-Хаус</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="social-networks">
+                <span>Мы в соцсетях:</span>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-vk"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    $(document).ready(function() {
+        // Обработчик кнопок "Откликнуться"
+        $('.apply-btn').on('click', function() {
+            const position = $(this).data('position');
+            $('#applicant-position').val(position);
+            $('.vacancies-list, .benefits-section, .info-card').hide();
+            $('#application-form').show();
+        });
+        
+        // Обработчик отмены
+        $('#cancel-application').on('click', function() {
+            $('#application-form').hide();
+            $('.vacancies-list, .benefits-section, .info-card').show();
+            $('#job-application-form')[0].reset();
+            $('#application-success').hide();
+            $('#job-application-form').show();
+        });
+        
+        // Обработчик отправки формы
+        $('#job-application-form').on('submit', function(e) {
+            e.preventDefault();
+            
+            // Проверяем заполнение обязательных полей
+            const name = $('#applicant-name').val();
+            const email = $('#applicant-email').val();
+            const phone = $('#applicant-phone').val();
+            const position = $('#applicant-position').val();
+            
+            if (!name || !email || !phone || !position) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+            
+            // Сохраняем заявку
+            let applications = JSON.parse(localStorage.getItem('jobApplications')) || [];
+            const newApplication = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                position: position,
+                experience: $('#applicant-experience').val() || '',
+                message: $('#applicant-message').val() || '',
+                date: new Date().toISOString(),
+                status: 'new'
+            };
+            applications.push(newApplication);
+            localStorage.setItem('jobApplications', JSON.stringify(applications));
+            
+            // Показываем сообщение об успехе
+            $('#application-success').show();
+            $('#job-application-form').hide();
+            
+            // Оповещаем админа
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user && user.role === 'admin') {
+                showNotification('Получена новая заявка на вакансию ' + position + '!', 'info');
+            }
+        });
+        
+        // Функция для показа уведомлений
+        function showNotification(message, type = 'info') {
+            $('.notification').remove();
+            
+            const colors = {
+                'success': '#4CAF50',
+                'error': '#f44336',
+                'info': '#2196F3',
+                'warning': '#ff9800'
+            };
+            
+            const notificationHTML = `
+                <div class="notification ${type}" style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${colors[type]};
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 5px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    z-index: 10001;
+                    animation: slideIn 0.3s ease;
+                    max-width: 300px;
+                ">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                </div>
+            `;
+            
+            $('body').append(notificationHTML);
+            
+            setTimeout(() => {
+                $('.notification').fadeOut(300, function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        }
+    });
+    </script>
+</body>
+</html>
