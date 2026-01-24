@@ -2,206 +2,962 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <title>Learn Hub - Платформа онлайн-курсов</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Донер-Хаус | Главная</title>
-    <link rel="stylesheet" type="text/css" href="css/Донер.css">
+    <meta name="description" content="Платформа для онлайн-курсов с системой тестирования и сертификации">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/vue-components.js" defer></script>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
+
 <body>
-    <!-- Шапка -->
-    <div class="header-container">
-        <header class="header-grid">
-            <div class="up-header">
-                <nav class="nav-links">
-                    <a class="nav-link" href="jobs.html">Работа у нас</a>
-                    <a class="nav-link" href="about.html">О нас</a>
-                    <a class="nav-link" href="contacts.html">Контакты</a>
-                    <a class="nav-link" href="certificates.html">Сертификаты</a>
-                </nav>
+<div id="app">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <h1 class="logo" @click="page='home'">
+                <i class="fas fa-graduation-cap"></i> Learn Hub
+            </h1>
+            
+            <nav>
+                <a @click="page='home'" :class="{active: page==='home'}">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a @click="page='courses'" :class="{active: page==='courses'}">
+                    <i class="fas fa-book"></i> Курсы
+                </a>
+                <a @click="page='testing'" :class="{active: page==='testing'}">
+                    <i class="fas fa-question-circle"></i> Тесты
+                </a>
+                <a @click="page='about'" :class="{active: page==='about'}">
+                    <i class="fas fa-info-circle"></i> О платформе
+                </a>
+                <a v-if="user" @click="page='cabinet'" :class="{active: page==='cabinet'}">
+                    <i class="fas fa-user"></i> Кабинет
+                </a>
+                <a v-if="user && user.role==='admin'" @click="page='admin'" :class="{active: page==='admin'}">
+                    <i class="fas fa-cogs"></i> Админ
+                </a>
+                <a v-if="!user" @click="page='auth'" :class="{active: page==='auth'}">
+                    <i class="fas fa-sign-in-alt"></i> Вход
+                </a>
+                <a v-if="user" @click="logout">
+                    <i class="fas fa-sign-out-alt"></i> Выход
+                </a>
+            </nav>
+            
+            <div class="user-badge" v-if="user">
+                <i class="fas fa-user-circle"></i>
+                <span>{{user.name || user.login}}</span>
             </div>
-        </header>
-        
-        <header class="header-grid">
-            <div class="center-header">
-                <div class="logo-container">
-                    <img src="4627023.png" alt="Донер-Хаус" id="logo">
-                    <p class="logo-text">Донер-Хаус</p>
-                </div>
-                <nav class="nav-links">
-                    <a class="nav-link" href="donercoins.html">Донеркоины</a>
-                    <a class="nav-link" href="#" id="auth-link">Вход</a>
-                </nav>
-            </div>
-        </header>
-        
-        <header class="header-grid">
-            <div class="down-header">
-                <div class="nav-links">
-                    <a class="nav-link" href="#" data-category="doners">Донеры</a>
-                    <a class="nav-link" href="#" data-category="combo">Комбо</a>
-                    <a class="nav-link" href="#" data-category="snacks">Закуски</a>
-                    <a class="nav-link" href="#" data-category="drinks">Напитки</a>
-                    <a class="nav-link" href="#" data-category="desserts">Десерты</a>
-                    <a class="nav-link" href="#" data-category="sauces">Соусы</a>
-             
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#">Ещё</a>
-                        <div class="dropdown-content">
-                            <a class="dropdown-link" href="#" data-category="kids">Детское меню</a>
-                            <a class="dropdown-link" href="#" data-category="favorites">Любимое</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <transition name="fade">
+            <section v-if="page==='home'" class="home">
+                <!-- Hero Section -->
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>Образование нового поколения</h1>
+                        <p class="subtitle">Получите востребованную профессию с гарантией трудоустройства. Обучайтесь у лучших экспертов индустрии.</p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h3>10,000+</h3>
+                                    <p>Студентов</p>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <h3>95%</h3>
+                                    <p>Трудоустройство</p>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <h3>4.9/5</h3>
+                                    <p>Рейтинг платформы</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Корзина в правом углу -->
-                    <div class="cart-button-container">
-                        <a class="nav-link cart-button" href="#" id="cart-button">Корзина</a>
-                        <div class="cart-badge empty" id="cart-badge">
-                            <span class="cart-count">0</span>
-                            <span class="cart-total-sum">0 ₽</span>
+                    <div class="hero-promo">
+                        <div class="promo-badge">АКЦИЯ</div>
+                        <h2><i class="fas fa-percentage"></i> Скидка 30%</h2>
+                        <p>На все курсы программирования до конца месяца!</p>
+                        <button @click="page='courses'" class="cta-button">
+                            <i class="fas fa-gift"></i> Получить скидку
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Problem Solver -->
+                <div class="problem-solver">
+                    <h2><i class="fas fa-hands-helping"></i> Поможем решить ваши проблемы</h2>
+                    <div class="problems-grid">
+                        <div class="problem-card">
+                            <i class="fas fa-question"></i>
+                            <h3>Не знаете с чего начать?</h3>
+                            <p>Пройдите бесплатный тест на профориентацию и получите индивидуальный план обучения</p>
+                            <button @click="page='testing'">Пройти тест</button>
+                        </div>
+                        <div class="problem-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Нет времени на обучение?</h3>
+                            <p>Гибкий график, записи уроков и мобильное приложение для обучения в любое время</p>
+                            <button @click="showModal('schedule')">График занятий</button>
+                        </div>
+                        <div class="problem-card">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h3>Сомневаетесь в цене?</h3>
+                            <p>Рассрочка платежа, возврат средств и бесплатный пробный урок каждого курса</p>
+                            <button @click="showModal('price')">Узнать цены</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Courses Slider -->
+                <div class="courses-slider-section">
+                    <h2><i class="fas fa-fire"></i> Популярные курсы</h2>
+                    <div class="slider-container">
+                        <button class="slider-btn prev" @click="prevSlide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <div class="courses-slider">
+                            <div class="slider-track" :style="{ transform: `translateX(-${courseSlide * 33.333}%)` }">
+                                <!-- Клонируем первые слайды в конец для бесконечности -->
+                                <div class="slider-item" v-for="(course, index) in featuredCourses.concat(featuredCourses.slice(0, 3))" :key="index">
+                                    <div class="course-card-featured">
+                                        <div class="course-badge" v-if="course.discount">
+                                            -{{course.discount}}%
+                                        </div>
+                                        <img :src="course.image" :alt="course.title">
+                                        <div class="course-info">
+                                            <h3>{{course.title}}</h3>
+                                            <p class="description">{{course.shortDescription}}</p>
+                                            <div class="course-meta">
+                                                <span><i class="fas fa-user-tie"></i> {{course.teacher}}</span>
+                                                <span><i class="fas fa-clock"></i> {{course.duration}}</span>
+                                            </div>
+                                            <div class="price">
+                                                <span class="old-price" v-if="course.discount">
+                                                    {{course.price}} ₽
+                                                </span>
+                                                <span class="current-price">
+                                                    {{calculateDiscount(course)}} ₽
+                                                </span>
+                                                <span class="per-month">/ месяц</span>
+                                            </div>
+                                            <button @click="selectCourse(course)" class="enroll-btn">
+                                                <i class="fas fa-shopping-cart"></i> Записаться
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="slider-btn next" @click="nextSlide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="slider-dots">
+                        <span v-for="n in featuredCourses.length" 
+                            :class="{active: courseSlide === n-1}"
+                            @click="courseSlide = n-1"></span>
+                    </div>
+                </div>
+
+                <!-- Testimonials -->
+                <div class="testimonials">
+                    <h2><i class="fas fa-comment-alt"></i> Отзывы наших студентов</h2>
+                    <div class="testimonials-grid">
+                        <div class="testimonial">
+                            
+                            <p>"Благодаря курсу сменила профессию и устроилась frontend-разработчиком с зарплатой в 2 раза выше!"</p>
+                            <h4>Анна, 28 лет</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            
+                            <p>"Лучшая платформа для обучения! Преподаватели - практики из топовых IT-компаний."</p>
+                            <h4>Дмитрий, 35 лет</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </transition>
+
+        <!-- Courses Page -->
+        <transition name="fade">
+            <section v-if="page==='courses'" class="courses-page">
+                <h2><i class="fas fa-book"></i> Каталог курсов</h2>
+                <p>Выберите курс, который подходит именно вам. Все курсы включают практические задания, поддержку преподавателя и сертификат об окончании.</p>
+                
+                <div class="filters">
+                    <select v-model="filterLevel" @change="filterCourses">
+                        <option value="">Все уровни</option>
+                        <option value="Начальный">Начальный</option>
+                        <option value="Средний">Средний</option>
+                        <option value="Продвинутый">Продвинутый</option>
+                    </select>
+                </div>
+                
+                <div class="courses">
+                    <div class="course-card" v-for="course in filteredCourses" @click="selectCourse(course)">
+                        <img :src="course.image" :alt="course.title">
+                        <div class="course-info">
+                            <h3>{{course.title}}</h3>
+                            <p class="description">{{course.description}}</p>
+                            <p class="teacher">👨‍🏫 {{course.teacher}}</p>
+                            <p class="price">{{course.price}} ₽ / месяц</p>
+                            <span class="level" :class="course.level.toLowerCase()">{{course.level}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal для записи на курс -->
+                <transition name="scale">
+                    <div class="modal" v-if="selectedCourse">
+                        <div class="modal-content">
+                            <h3>{{selectedCourse.title}}</h3>
+                            <p>{{selectedCourse.description}}</p>
+                            
+                            <div class="course-details">
+                                <p><strong>👨‍🏫 Преподаватель:</strong> {{selectedCourse.teacher}}</p>
+                                <p><strong>📊 Уровень:</strong> {{selectedCourse.level}}</p>
+                                <p><strong>⏱️ Длительность:</strong> {{selectedCourse.duration}}</p>
+                                <p><strong>🎯 Формат:</strong> {{selectedCourse.format}}</p>
+                            </div>
+                            
+                            <label>📅 Дата начала обучения:</label>
+                            <input type="date" v-model="bookingDate" :min="today" class="flatpickr">
+                            
+                            <div class="modal-actions">
+                                <button @click="bookCourse" :disabled="!bookingDate">Записаться на курс</button>
+                                <button class="secondary" @click="selectedCourse=null">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+            </section>
+        </transition>
+
+        <!-- Testing Page -->
+        <transition name="fade">
+        <section v-if="page==='testing'" class="testing">
+            <h2><i class="fas fa-question-circle"></i> Тестирование по курсам</h2>
+            <p>Проверьте свои знания и получите рекомендации по дальнейшему обучению</p>
+            
+            <!-- Информация о завершении курсов через тесты -->
+            <div class="course-completion-info" v-if="user && coursesWithTests.length > 0">
+                <h3><i class="fas fa-graduation-cap"></i> Завершение курсов через тестирование</h3>
+                <p>Следующие курсы можно завершить, пройдя финальный тест:</p>
+                <div class="courses-to-complete">
+                    <div class="course-to-complete" v-for="course in coursesWithTests">
+                        <h4>{{course.title}}</h4>
+                        <p>Минимальный балл: {{course.minScore}}%</p>
+                        <button @click="continueCourse(course)" class="small">
+                            <i class="fas fa-play"></i> Пройти тест
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tests-grid">
+                <div class="test-card" v-for="test in tests" @click="startTest(test)">
+                    <div class="test-header">
+                        <i :class="test.icon"></i>
+                        <h3>{{test.title}}</h3>
+                    </div>
+                    <p>{{test.description}}</p>
+                    
+                    <!-- Информация о связи с курсом -->
+                    <div v-if="test.courseId" class="test-course-info">
+                        <i class="fas fa-link"></i>
+                        <span>Финальный тест курса: 
+                            {{courses.find(c => c.id === test.courseId)?.title || 'Неизвестный курс'}}
+                        </span>
+                    </div>
+                    
+                    <div class="test-meta">
+                        <span><i class="fas fa-question"></i> {{test.questions}} вопросов</span>
+                        <span><i class="fas fa-clock"></i> {{test.time}} мин</span>
+                    </div>
+                    <div class="test-status">
+                        <span class="status-badge" :class="{
+                            'completed': test.completed,
+                            'not-started': !test.completed
+                        }">
+                            {{test.completed ? 'Пройден' : 'Не начат'}}
+                        </span>
+                        <span class="score" v-if="test.completed">
+                            {{test.score}}%
+                        </span>
+                    </div>
+                    <button class="start-btn">
+                        {{test.completed ? 'Пройти ещё раз' : 'Начать тест'}}
+                    </button>
+                </div>
+            </div>
+        </section>
+    </transition>
+
+        <!-- About Page -->
+        <transition name="fade">
+            <section v-if="page==='about'" class="about">
+                <div class="about-hero">
+                    <h1><i class="fas fa-rocket"></i> Learn Hub - Образование нового поколения</h1>
+                    <p>Мы меняем подход к онлайн-образованию, делая его эффективным, доступным и интересным</p>
+                </div>
+                
+                <div class="about-mission">
+                    <div class="mission-card">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Наша миссия</h3>
+                        <p>Сделать качественное IT-образование доступным для каждого, независимо от возраста, местоположения и финансовых возможностей.</p>
+                    </div>
+                    <div class="mission-card">
+                        <i class="fas fa-eye"></i>
+                        <h3>Наше видение</h3>
+                        <p>Стать лидером в онлайн-образовании в Восточной Европе, подготовив 100,000+ специалистов к 2030 году.</p>
+                    </div>
+                    <div class="mission-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Наши ценности</h3>
+                        <p>Качество, доступность, практическая направленность, поддержка сообщества и постоянное развитие.</p>
+                    </div>
+                </div>
+                
+                <div class="platform-features">
+                    <h2><i class="fas fa-star"></i> Преимущества платформы</h2>
+                    <div class="features-grid">
+                        <div class="feature">
+                            <i class="fas fa-laptop-code"></i>
+                            <h4>Практика с первого дня</h4>
+                            <p>80% времени - практические задания на реальных проектах</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <h4>Комьюнити экспертов</h4>
+                            <p>Общайтесь с преподавателями и студентами в закрытых чатах</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-briefcase"></i>
+                            <h4>Карьерный рост</h4>
+                            <p>Помощь в трудоустройстве и стажировках в партнерских компаниях</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Обучение в любом месте</h4>
+                            <p>Мобильное приложение, офлайн-режим, субтитры на всех языках</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Улучшенная секция преподавателей -->
+                <div class="teachers-section">
+                    <h2><i class="fas fa-chalkboard-teacher"></i> Наши преподаватели</h2>
+                    <p>Обучайтесь у практиков из Яндекс, Тинькофф, VK и других топовых компаний</p>
+                    
+                    <div class="teachers-grid">
+                        <div class="teacher-card" v-for="teacher in teachers" :key="teacher.name">
+                            <div class="teacher-image">
+                                <img :src="teacher.avatar" :alt="teacher.name">
+                                <div class="teacher-badge">
+                                    <i class="fas fa-medal"></i> Эксперт
+                                </div>
+                            </div>
+                            <div class="teacher-info">
+                                <h3>{{teacher.name}}</h3>
+                                <p class="position">{{teacher.position}}</p>
+                                <p class="experience"><i class="fas fa-briefcase"></i> {{teacher.experience}}</p>
+                                <div class="teacher-skills">
+                                    <span v-for="skill in teacher.skills">{{skill}}</span>
+                                </div>
+                                <p class="students">
+                                    <i class="fas fa-user-graduate"></i> Обучил {{teacher.students}}+ студентов
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </transition>
+
+        <!-- Auth Page -->
+        <transition name="fade">
+            <section v-if="page==='auth'" class="auth">
+                <h2>Вход / Регистрация</h2>
+                
+                <div class="auth-tabs">
+                    <button @click="authMode='login'" :class="{active: authMode==='login'}">Вход</button>
+                    <button @click="authMode='register'" :class="{active: authMode==='register'}">Регистрация</button>
+                </div>
+                
+                <div v-if="authMode==='login'">
+                    <input v-model="auth.login" placeholder="Email или логин">
+                    <input v-model="auth.password" type="password" placeholder="Пароль">
+                    <button @click="login" class="auth-btn">Войти</button>
+                </div>
+                
+                <div v-if="authMode==='register'">
+                    <input v-model="registerData.email" placeholder="Email">
+                    <input v-model="registerData.login" placeholder="Логин">
+                    <input v-model="registerData.password" type="password" placeholder="Пароль">
+                    <input v-model="registerData.confirmPassword" type="password" placeholder="Повторите пароль">
+                    <button @click="register" class="auth-btn">Зарегистрироваться</button>
+                </div>
+                
+                <p class="error" v-if="error">{{error}}</p>
+                <p class="success" v-if="success">{{success}}</p>
+            </section>
+        </transition>
+
+        <!-- Cabinet Page -->
+        <transition name="fade">
+            <section v-if="page==='cabinet'" class="cabinet">
+                <div class="cabinet-header">
+                    <h2><i class="fas fa-user-circle"></i> Личный кабинет</h2>
+                    <div class="user-welcome">
+                        <img :src="user.avatar || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face'" alt="Avatar">
+                        <div>
+                            <h3>Добро пожаловать, {{user.name || user.login}}!</h3>
+                            <p>Ваш прогресс обучения: {{user.progress}}%</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cabinet-container">
+                    <aside>
+                        <ul>
+                            <li @click="cabinetTab='profile'" :class="{active: cabinetTab==='profile'}">
+                                <i class="fas fa-user"></i> Профиль
+                            </li>
+                            <li @click="cabinetTab='my-courses'" :class="{active: cabinetTab==='my-courses'}">
+                                <i class="fas fa-book"></i> Мои курсы
+                            </li>
+                            <li @click="cabinetTab='schedule'" :class="{active: cabinetTab==='schedule'}">
+                                <i class="fas fa-calendar-alt"></i> Расписание
+                            </li>
+                            <li @click="cabinetTab='tests'" :class="{active: cabinetTab==='tests'}">
+                                <i class="fas fa-question-circle"></i> Тесты
+                            </li>
+                            <li @click="cabinetTab='diary'" :class="{active: cabinetTab==='diary'}">
+                                <i class="fas fa-book-open"></i> Дневник
+                            </li>
+                            <li @click="cabinetTab='certificates'" :class="{active: cabinetTab==='certificates'}">
+                                <i class="fas fa-award"></i> Сертификаты
+                            </li>
+                            <li @click="cabinetTab='stats'" :class="{active: cabinetTab==='stats'}">
+                                <i class="fas fa-chart-line"></i> Статистика
+                            </li>
+                        </ul>
+                    </aside>
+                    
+                    <div class="cabinet-content">
+                        <!-- Профиль -->
+                        <div v-if="cabinetTab==='profile'" class="tab-content">
+                            <h3><i class="fas fa-user"></i> Профиль пользователя</h3>
+                            <div class="profile-info">
+                                <p><strong>Логин:</strong> {{user.login}}</p>
+                                <p><strong>Email:</strong> {{user.email}}</p>
+                                <p><strong>Дата регистрации:</strong> {{user.registrationDate}}</p>
+                                <p><strong>Прогресс обучения:</strong> {{user.progress}}%</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Мои курсы -->
+                        <div v-if="cabinetTab==='my-courses'" class="tab-content">
+                            <h3><i class="fas fa-book"></i> Мои курсы</h3>
+                            <div class="my-courses">
+                                <div class="enrolled-course" v-for="course in enrolledCourses">
+                                    <h4>{{course.title}}</h4>
+                                    <p>Прогресс: <progress :value="course.progress" max="100"></progress> {{course.progress}}%</p>
+                                    
+                                    <!-- Статус курса -->
+                                    <div class="course-status">
+                                        <span v-if="course.isCompleted" class="status-completed">
+                                            <i class="fas fa-check-circle"></i> Завершен
+                                        </span>
+                                        <span v-else-if="course.testId" class="status-test-available">
+                                            <i class="fas fa-question-circle"></i> Доступен финальный тест
+                                        </span>
+                                        <span v-else class="status-in-progress">
+                                            <i class="fas fa-spinner"></i> В процессе
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Кнопки действий -->
+                                    <div class="course-actions">
+                                        <button @click="continueCourse(course)" class="small">
+                                            <i class="fas fa-play"></i> Продолжить
+                                        </button>
+                                        
+                                        <!-- Кнопка завершения курса через тест -->
+                                        <button v-if="!course.isCompleted && course.testId" 
+                                                @click="completeCourse(course)" 
+                                                class="small primary">
+                                            <i class="fas fa-graduation-cap"></i> Завершить курс
+                                        </button>
+                                        
+                                        <!-- Кнопка скачивания сертификата -->
+                                        <button v-if="course.isCompleted" 
+                                                @click="generateCertificate(course)" 
+                                                class="small success">
+                                            <i class="fas fa-download"></i> Сертификат
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Расписание -->
+                        <div v-if="cabinetTab==='schedule'" class="tab-content">
+                            <h3><i class="fas fa-calendar-alt"></i> Расписание занятий</h3>
+                            <div class="schedule-container">
+                                <div class="calendar">
+                                    <div class="calendar-header">
+                                        <button @click="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                                        <h4>{{currentMonth}} {{currentYear}}</h4>
+                                        <button @click="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="calendar-grid">
+                                        <div class="weekday" v-for="day in weekdays">{{day}}</div>
+                                        <div class="day" 
+                                             v-for="day in calendarDays"
+                                             :class="{
+                                                 'today': day.isToday,
+                                                 'has-lesson': day.hasLesson,
+                                                 'selected': day.isSelected
+                                             }"
+                                             @click="selectDay(day)">
+                                            {{day.date}}
+                                            <div class="lesson-indicator" v-if="day.hasLesson">
+                                                <i class="fas fa-video"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="lessons-list">
+                                    <h4>Занятия на {{selectedDay.date}} {{currentMonth}}</h4>
+                                    <div class="lesson" v-for="lesson in selectedDayLessons">
+                                        <div class="lesson-time">
+                                            <i class="fas fa-clock"></i>
+                                            {{lesson.time}}
+                                        </div>
+                                        <div class="lesson-info">
+                                            <h5>{{lesson.course}}</h5>
+                                            <p>{{lesson.topic}}</p>
+                                            <span class="lesson-type">{{lesson.type}}</span>
+                                        </div>
+                                        <button @click="joinLesson(lesson)" class="join-btn">
+                                            <i class="fas fa-video"></i> Присоединиться
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Дневник -->
+                        <div v-if="cabinetTab==='diary'" class="tab-content">
+                            <h3><i class="fas fa-book-open"></i> Дневник успеваемости</h3>
+                            <div class="diary-controls">
+                                <select v-model="diaryMonth" @change="loadDiaryEntries">
+                                    <option v-for="(month, index) in months" :value="index">{{month}}</option>
+                                </select>
+                            </div>
+                            
+                            <div class="diary-entries">
+                                <div class="diary-entry" v-for="entry in diaryEntries">
+                                    <div class="entry-date">
+                                        <h5>{{entry.date}}</h5>
+                                        <span>{{entry.day}}</span>
+                                    </div>
+                                    <div class="entry-content">
+                                        <div class="grades">
+                                            <div class="grade" v-for="grade in entry.grades">
+                                                <span class="course">{{grade.course}}</span>
+                                                <span class="score" :class="getGradeClass(grade.score)">
+                                                    {{grade.score}}/100
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="teacher-comment" v-if="entry.comment">
+                                            <i class="fas fa-comment"></i>
+                                            {{entry.comment}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Сертификаты -->
+                        <div v-if="cabinetTab==='certificates'" class="tab-content">
+                            <h3><i class="fas fa-award"></i> Мои сертификаты</h3>
+                            <div class="certificates" v-if="userCertificates.length > 0">
+                                <div class="certificate" v-for="cert in userCertificates">
+                                    <h4>{{cert.course}}</h4>
+                                    <p>Дата выдачи: {{cert.date}}</p>
+                                    <button @click="generateCertificate(cert)" class="small">
+                                        <i class="fas fa-download"></i> Скачать PDF
+                                    </button>
+                                </div>
+                            </div>
+                            <div v-else class="no-certificates">
+                                <p>У вас пока нет сертификатов.</p>
+                                <p>Завершите курс, чтобы получить сертификат.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Статистика -->
+                        <div v-if="cabinetTab==='stats'" class="tab-content">
+                            <h3><i class="fas fa-chart-line"></i> Статистика обучения</h3>
+                            <div class="chart-container">
+                                <canvas id="progressChart"></canvas>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <h4>Всего часов</h4>
+                                    <p class="stat-value">{{stats.totalHours}}</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>Пройдено курсов</h4>
+                                    <p class="stat-value">{{stats.completedCourses}}</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>Средняя оценка</h4>
+                                    <p class="stat-value">{{stats.averageScore}}/100</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Тесты -->
+                        <div v-if="cabinetTab==='tests'" class="tab-content">
+                            <h3><i class="fas fa-question-circle"></i> Тесты и задания</h3>
+                            <div class="tests-list">
+                                <div class="test" v-for="test in userTests">
+                                    <h4>{{test.title}}</h4>
+                                    <p>Статус: <span :class="test.completed ? 'completed' : 'in-progress'">{{test.completed ? 'Пройден' : 'В процессе'}}</span></p>
+                                    <p>Оценка: {{test.score || 'Не оценено'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </transition>
+
+        <!-- Admin Page -->
+        <transition name="fade">
+            <section v-if="page==='admin'" class="admin">
+                <div class="admin-header">
+                    <h2><i class="fas fa-cogs"></i> Административная панель</h2>
+                    <div class="admin-stats">
+                        <div class="admin-stat">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3>{{analytics.totalUsers}}</h3>
+                                <p>Пользователей</p>
+                            </div>
+                        </div>
+                        <div class="admin-stat">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>{{analytics.activeCourses}}</h3>
+                                <p>Курсов</p>
+                            </div>
+                        </div>
+                        <div class="admin-stat">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <h3>{{analytics.totalBookings}}</h3>
+                                <p>Записей</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-tabs">
+                    <button @click="adminTab='users'" :class="{active: adminTab==='users'}">
+                        <i class="fas fa-users"></i> Пользователи
+                    </button>
+                    <button @click="adminTab='courses'" :class="{active: adminTab==='courses'}">
+                        <i class="fas fa-book"></i> Курсы
+                    </button>
+                    <button @click="adminTab='analytics'" :class="{active: adminTab==='analytics'}">
+                        <i class="fas fa-chart-bar"></i> Аналитика
+                    </button>
+                    <button @click="adminTab='certificates'" :class="{active: adminTab==='certificates'}">
+                        <i class="fas fa-award"></i> Сертификаты
+                    </button>
+                </div>
+                
+                <!-- Управление пользователями -->
+                <div v-if="adminTab==='users'" class="tab-content">
+                    <h3><i class="fas fa-users"></i> Управление пользователями</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Логин</th>
+                                <th>Email</th>
+                                <th>Роль</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="u in users" :class="{banned: u.status === 'banned'}">
+                                <td>{{u.login}}</td>
+                                <td>{{u.email}}</td>
+                                <td>{{u.role}}</td>
+                                <td>{{u.status === 'banned' ? 'Заблокирован' : 'Активен'}}</td>
+                                <td class="actions">
+                                    <button @click="toggleBan(u)" class="small">{{u.status === 'banned' ? 'Разблокировать' : 'Заблокировать'}}</button>
+                                    <button @click="deleteUser(u.login)" class="small danger">Удалить</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Управление курсами -->
+                <div v-if="adminTab==='courses'" class="tab-content">
+                    <h3><i class="fas fa-book"></i> Управление курсами</h3>
+                    
+                    <div class="add-course-form">
+                        <h4><i class="fas fa-plus-circle"></i> Добавить новый курс</h4>
+                        <input v-model="newCourse.title" placeholder="Название курса *" required>
+                        <input v-model="newCourse.price" placeholder="Цена (руб/мес) *" type="number" required>
+                        <textarea v-model="newCourse.description" placeholder="Описание курса"></textarea>
+                        <select v-model="newCourse.level">
+                            <option value="">Выберите уровень</option>
+                            <option value="Начальный">Начальный</option>
+                            <option value="Средный">Средний</option>
+                            <option value="Продвинутый">Продвинутый</option>
+                        </select>
+                        <input v-model="newCourse.teacher" placeholder="Преподаватель">
+                        <button @click="addCourse" class="primary">
+                            <i class="fas fa-save"></i> Добавить курс
+                        </button>
+                    </div>
+                    
+                    <div class="courses-list">
+                        <h4><i class="fas fa-list"></i> Существующие курсы ({{courses.length}})</h4>
+                        <div class="admin-course" v-for="course in courses" :key="course.id">
+                            <div class="course-info">
+                                <h5>{{course.title}} - {{course.price}}₽</h5>
+                                <p class="course-description">{{course.description}}</p>
+                                <div class="course-meta">
+                                    <span class="level">{{course.level}}</span>
+                                    <span class="teacher"><i class="fas fa-user-tie"></i> {{course.teacher}}</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <button @click="editCourse(course)" class="small secondary">
+                                    <i class="fas fa-edit"></i> Редактировать
+                                </button>
+                                <button @click="deleteCourse(course.id)" class="small danger">
+                                    <i class="fas fa-trash"></i> Удалить
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Аналитика -->
+                <div v-if="adminTab==='analytics'" class="tab-content">
+                    <h3><i class="fas fa-chart-bar"></i> Аналитика платформы</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>Всего пользователей</h4>
+                            <p class="stat-value">{{analytics.totalUsers}}</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Активных курсов</h4>
+                            <p class="stat-value">{{analytics.activeCourses}}</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Всего записей</h4>
+                            <p class="stat-value">{{analytics.totalBookings}}</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Выдано сертификатов</h4>
+                            <p class="stat-value">{{analytics.totalCertificates}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="adminChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </transition>
+
+        <!-- Модальное окно теста -->
+        <transition name="fade">
+            <div v-if="showTestModal" class="test-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>
+                            <i :class="currentTest.icon"></i>
+                            {{currentTest.title}}
+                        </h3>
+                        <div class="timer" :class="{
+                            'warning': testTimeLeft < 300 && testTimeLeft > 60,
+                            'danger': testTimeLeft <= 60
+                        }">
+                            <i class="fas fa-clock"></i> {{formattedTime}}
+                        </div>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div v-if="!testResults">
+                            <!-- Прогресс теста -->
+                            <div class="test-progress">
+                                <div class="progress-info">
+                                    <span>Вопрос {{currentQuestionIndex + 1}} из {{currentTest.questionsList.length}}</span>
+                                    <span>{{testProgress.toFixed(0)}}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" :style="{width: testProgress + '%'}"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Навигация по вопросам -->
+                            <div class="question-navigation">
+                                <div class="question-dot" 
+                                     v-for="(question, index) in currentTest.questionsList"
+                                     :class="{
+                                         'current': currentQuestionIndex === index,
+                                         'answered': userAnswers[index]
+                                     }"
+                                     @click="goToQuestion(index)">
+                                    {{index + 1}}
+                                </div>
+                            </div>
+                            
+                            <!-- Вопрос и варианты ответов -->
+                            <div class="question-content" v-if="currentQuestion">
+                                <div class="question-text">
+                                    {{currentQuestion.text}}
+                                </div>
+                                
+                                <div class="answers">
+                                    <div class="answer" 
+                                         v-for="answer in currentQuestion.answers"
+                                         :class="{selected: selectedAnswer === answer.id}"
+                                         @click="selectAnswer(answer.id)">
+                                        <div class="answer-letter">
+                                            {{String.fromCharCode(64 + answer.id)}}
+                                        </div>
+                                        <span>{{answer.text}}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="test-controls">
+                                    <button @click="prevQuestion" :disabled="currentQuestionIndex === 0">
+                                        <i class="fas fa-arrow-left"></i> Предыдущий
+                                    </button>
+                                    <button @click="nextQuestion" 
+                                            class="primary"
+                                            :disabled="currentQuestionIndex === currentTest.questionsList.length - 1 && !selectedAnswer">
+                                        {{currentQuestionIndex === currentTest.questionsList.length - 1 ? 'Завершить тест' : 'Следующий'}}
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Результаты теста -->
+                        <div class="test-results" v-else>
+                            <div class="result-icon" :class="{
+                                'success': testResults.score >= 80,
+                                'average': testResults.score >= 60 && testResults.score < 80,
+                                'poor': testResults.score < 60
+                            }">
+                                <i class="fas fa-award" v-if="testResults.score >= 80"></i>
+                                <i class="fas fa-check-circle" v-else-if="testResults.score >= 60"></i>
+                                <i class="fas fa-exclamation-circle" v-else></i>
+                            </div>
+                            
+                            <h3>Тест завершён!</h3>
+                            
+                            <div class="score-display">
+                                {{testResults.score}}%
+                            </div>
+                            
+                            <div class="result-details">
+                                <p>Правильных ответов: {{testResults.correctAnswers}} из {{testResults.totalQuestions}}</p>
+                                <p>Верных ответов: {{testResults.percentage}}</p>
+                                <p v-if="testResults.score >= 80">Отличный результат! Вы хорошо усвоили материал.</p>
+                                <p v-else-if="testResults.score >= 60">Хороший результат! Есть что повторить.</p>
+                                <p v-else>Рекомендуем повторить материал и пройти тест ещё раз.</p>
+                            </div>
+                            
+                            <div class="test-controls">
+                                <button @click="restartTest" class="primary">
+                                    <i class="fas fa-redo"></i> Пройти ещё раз
+                                </button>
+                                <button @click="closeTestModal">
+                                    <i class="fas fa-times"></i> Закрыть
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
-    </div>
+        </transition>
+    </main>
 
-    <!-- Слайдер -->
-    <div class="auto-slider">
-        <div class="slider-container">
-            <div class="slider-track">
-                <!-- Картинки будут добавлены динамически через JS -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Заголовок товаров -->
-    <div class="slider-title">
-        <h2 id="category-title">Донеры</h2>
-    </div>
-
-    <!-- Основной контент -->
-    <div class="content-container">
-        <!-- Левое меню -->
-        <div class="left-menu" id="left-menu">
-            <h3>Меню</h3>
-            <ul>
-                <li><a href="#" data-category="all" class="active">Всё</a></li>
-                <li><a href="#" data-category="doners">Донеры</a></li>
-                <li><a href="#" data-category="combo">Комбо</a></li>
-                <li><a href="#" data-category="snacks">Закуски</a></li>
-                <li><a href="#" data-category="drinks">Напитки</a></li>
-                <li><a href="#" data-category="desserts">Десерты</a></li>
-                <li><a href="#" data-category="sauces">Соусы</a></li>
-                <li><a href="#" data-category="kids">Детское меню</a></li>
-                <li><a href="#" data-category="favorites">Любимое</a></li>
-                
-                <!-- Управление товарами (только для админа) -->
-                <div class="admin-section" id="admin-section" style="display: none;">
-                    <h4>Управление товарами</h4>
-                    <div class="admin-links">
-                        <a href="#" id="admin-panel-link">Управление товарами</a>
-                    </div>
-                </div>
-            </ul>
-        </div>
-
-        <!-- Товары -->
-        <div class="products-grid" id="products-container">
-            <div class="loading-products">
-                <div class="spinner"></div>
-                <p>Загружаем меню...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Доставка и оплата -->
-    <div class="delivery-payment">
-        <h2>Доставка и оплата</h2>
-        <div class="delivery-payment-content">
-            <div class="payment-info">
-                <h3>Оплата</h3>
-                <p><i class="fas fa-money-bill-wave"></i> Наличными курьеру</p>
-                <p><i class="fas fa-credit-card"></i> Банковский перевод</p>
-                <p><i class="fas fa-mobile-alt"></i> Картой онлайн</p>
-                <p>Оформление заказа:</p>
-                <p>Оформить заказ можно на сайте через корзину или просто позвоните нам по телефону <strong>8-900-123-45-67</strong> или <strong>8-900-765-43-21</strong> и сообщите заказ оператору.</p>
-                <button class="call-button"><i class="fas fa-phone"></i> Позвонить</button>
-            </div>
-            <div class="delivery-info">
-                <h3>Доставка</h3>
-                <p><i class="fas fa-shopping-bag"></i> Минимальный заказ:</p>
-                <p><strong>от 500 рублей</strong></p>
-                <p><i class="fas fa-clock"></i> Время и дни доставки:</p>
-                <p>Мы работаем для Вас без выходных и праздников</p>
-                <p>Время доставки с 10:00-22:00.</p>
-                <p><i class="fas fa-store"></i> Самовывоз предусмотрен из кафе: Рязань, ул. Ленина, 123</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Vue компонент: Отзывы о товарах -->
-    <div id="product-reviews-app" class="vue-component">
-        <product-reviews></product-reviews>
-    </div>
-
-    <!-- Футер -->
-    <footer class="site-footer">
+    <!-- Footer -->
+    <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>Каталог</h3>
-                <ul>
-                    <li><a href="#" data-category="doners">Донеры</a></li>
-                    <li><a href="#" data-category="combo">Комбо</a></li>
-                    <li><a href="#" data-category="snacks">Закуски</a></li>
-                    <li><a href="#" data-category="drinks">Напитки</a></li>
-                    <li><a href="#" data-category="desserts">Десерты</a></li>
-                    <li><a href="#" data-category="sauces">Соусы</a></li>
-                    <li><a href="#" data-category="kids">Детское меню</a></li>
-                    <li><a href="#" data-category="favorites">Любимое</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Покупателям</h3>
-                <ul>
-                    <li><a href="jobs.html">Работа у нас</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                    <li><a href="certificates.html">Сертификаты</a></li>
-                    <li><a href="donercoins.html">Донеркоины</a></li>
-                    <li><a href="#" id="auth-footer">Вход</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-contact">
-                <p><i class="fas fa-envelope"></i> Напиши нам:</p>
-                <p class="email">ksyu.nazarova.05@mail.ru</p>
-                <div class="footer-logo">
-                    <img src="4627023.png" alt="Донер-Хаус">
-                    <span>Донер-Хаус</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="social-networks">
-                <span>Мы в социальных сетях:</span>
-                <a href="#" class="social-icon">
-                    <i class="fab fa-vk"></i>
-                </a>
-                <a href="#" class="social-icon">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="#" class="social-icon">
-                    <i class="fab fa-instagram"></i>
-                </a>
+            <p>© Learn Hub 2026. Все права защищены.</p>
+            <p>Образовательная платформа нового поколения</p>
+            <div class="footer-links">
+                <a @click="page='about'">О нас</a>
+                <a href="#">Контакты</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Пользовательское соглашение</a>
             </div>
         </div>
     </footer>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/ajax.js"></script>
 </body>
 </html>
