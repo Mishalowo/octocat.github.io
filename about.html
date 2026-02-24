@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Донер-Хаус</title>
+    <link rel="stylesheet" type="text/css" href="css/Донер.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <!-- Шапка -->
+    <div class="header-container">
+        <header class="header-grid">
+            <div class="up-header">
+                <nav class="nav-links">
+                    <a class="nav-link" href="jobs.html">Работа у нас</a>
+                    <a class="nav-link active" href="about.html">О нас</a>
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                    <a class="nav-link" href="certificates.html">Сертификаты</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="center-header">
+                <div class="logo-container">
+                    <a href="index.html"><img src="4627023.png" alt="Донер-Хаус"></a>
+                    <p class="logo-text">Донер-Хаус</p>
+                </div>
+                <nav class="nav-links">
+                    <a class="nav-link" href="donercoins.html">Донеркоины</a>
+                    <a class="nav-link" href="#" id="auth-link">Вход</a>
+                </nav>
+            </div>
+        </header>
+        
+        <header class="header-grid">
+            <div class="down-header">
+                <div class="nav-links">
+                    <a class="nav-link" href="index.html">Донеры</a>
+                    <a class="nav-link" href="index.html">Комбо</a>
+                    <a class="nav-link" href="index.html">Закуски</a>
+                    <a class="nav-link" href="index.html">Напитки</a>
+                    <a class="nav-link" href="index.html">Десерты</a>
+                    <a class="nav-link" href="index.html">Соусы</a>
+                    
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#">Ещё</a>
+                        <div class="dropdown-content">
+                            <a class="dropdown-link" href="index.html">Детское мену</a>
+                            <a class="dropdown-link" href="index.html">Любимое</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Корзина в правом углу -->
+                    <div class="cart-button-container">
+                        <a class="nav-link cart-button" href="#" id="cart-button">Корзина</a>
+                        <div class="cart-badge empty" id="cart-badge">
+                            <span class="cart-count">0</span>
+                            <span class="cart-total-sum">0 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Контент страницы -->
+    <div class="page-content">
+        <h1><i class="fas fa-store"></i> О компании Донер-Хаус</h1>
+        
+        <div class="about-hero">
+            <p class="hero-text">С 2015 года мы дарим людям настоящий вкус традиционных донеров, приготовленных с любовью и из свежайших ингредиентов.</p>
+        </div>
+        
+        <div class="section-bg about-section">
+            <h2><i class="fas fa-history"></i> Наша история</h2>
+            <p>Все началось с маленькой палатки на улице Ленина в Рязани. Основатель, Иван Петров, мечтал создать место, где каждый мог бы попробовать настоящий донер, приготовленный по традиционным рецептам.</p>
+            <p>За 8 лет мы выросли в сеть из 5 кафе по всему городу, но сохранили свой подход: качественные ингредиенты, свежесть и внимание к каждому клиенту.</p>
+        </div>
+        
+        <div class="mission-section">
+            <h2><i class="fas fa-bullseye"></i> Наша миссия</h2>
+            <p>Мы верим, что хорошая еда может сделать день лучше. Поэтому наша миссия — дарить людям не просто быстрый перекус, а настоящий вкус, который запоминается.</p>
+        </div>
+        
+        <h2><i class="fas fa-star"></i> Наши ценности</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                <h4>Свежесть</h4>
+                <p>Используем только свежие продукты, которые доставляются ежедневно</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-heart"></i></div>
+                <h4>Качество</h4>
+                <p>Строгий контроль на каждом этапе приготовления</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-users"></i></div>
+                <h4>Клиенты</h4>
+                <p>Каждый клиент для нас — важный гость</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-recycle"></i></div>
+                <h4>Экологичность</h4>
+                <p>Используем биоразлагаемую упаковку</p>
+            </div>
+        </div>
+        
+        <div class="stats-section section-bg">
+            <h2><i class="fas fa-chart-line"></i> Мы в цифрах</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center; margin-top: 30px;">
+                <div class="stat-item">
+                    <div style="font-size: 36px; color: #A64600; font-weight: bold;">8+</div>
+                    <div style="font-size: 16px; color: #666;">Лет работы</div>
+                </div>
+                <div class="stat-item">
+                    <div style="font-size: 36px; color: #A64600; font-weight: bold;">5</div>
+                    <div style="font-size: 16px; color: #666;">Кафе в городе</div>
+                </div>
+                <div class="stat-item">
+                    <div style="font-size: 36px; color: #A64600; font-weight: bold;">50+</div>
+                    <div style="font-size: 16px; color: #666;">Сотрудников</div>
+                </div>
+                <div class="stat-item">
+                    <div style="font-size: 36px; color: #A64600; font-weight: bold;">100К+</div>
+                    <div style="font-size: 16px; color: #666;">Довольных клиентов</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="team-section">
+            <h2><i class="fas fa-users"></i> Наша команда</h2>
+            <p>За каждым вкусным донером стоит команда профессионалов — опытные повара, внимательные администраторы и быстрые курьеры. Мы учимся, растем и развиваемся вместе.</p>
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="jobs.html" class="cta-button">Присоединиться к команде</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Меню</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#doners">Донеры</a></li>
+                    <li><a href="index.html#combo">Комбо</a></li>
+                    <li><a href="index.html#snacks">Закуски</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="jobs.html">Работа у нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="certificates.html">Сертификаты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> Email:</p>
+                <p class="email">ksyu.nazarova.05@mail.ru</p>
+                <div class="footer-logo">
+                    <img src="4627023.png" alt="Донер-Хаус">
+                    <span>Донер-Хаус</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="social-networks">
+                <span>Мы в соцсетях:</span>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-vk"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

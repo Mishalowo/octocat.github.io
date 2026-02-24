@@ -1,0 +1,29 @@
+{
+  "name": "doner-house",
+  "version": "1.0.0",
+  "description": "Сайт Донер-Хаус с Grunt сборкой",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "grunt build",
+    "start": "grunt serve",
+    "dev": "grunt dev",
+    "css": "grunt less:development",
+    "watch": "grunt watch"
+  },
+  "keywords": [
+    "doner",
+    "website",
+    "grunt"
+  ],
+  "author": "Ваше Имя",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-less": "^3.0.0",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
