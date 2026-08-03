@@ -334,7 +334,7 @@ $(document).ready(function() {
 
     // ===== 7. КОРЗИНА =====
     function updateCartBadge() {
-        //const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
         const totalSum = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
         const badge = $('#cart-badge');
         
