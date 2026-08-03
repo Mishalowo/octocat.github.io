@@ -378,7 +378,7 @@ $(document).ready(function() {
         // Добавление в корзину
         const existingItem = cart.find(item => item.id == id);
         if (existingItem) {
-            existingItem.quantity = (existingItem.quantity || 1);
+            existingItem.quantity = (existingItem.quantity || 0) + 1;
         } else {
             cart.push({
                 id: id,
