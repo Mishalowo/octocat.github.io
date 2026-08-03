@@ -334,8 +334,8 @@ $(document).ready(function() {
 
     // ===== 7. КОРЗИНА =====
     function updateCartBadge() {
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity), 0);
-        const totalSum = cart.reduce((sum, item) => sum + (item.price * (item.quantity)), 0);
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const totalSum = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
         const badge = $('#cart-badge');
         
         if (badge.length) {
@@ -378,7 +378,7 @@ $(document).ready(function() {
         // Добавление в корзину
         const existingItem = cart.find(item => item.id == id);
         if (existingItem) {
-            existingItem.quantity = (existingItem.quantity || 1) + 1;
+            existingItem.quantity = (existingItem.quantity || 1);
         } else {
             cart.push({
                 id: id,
