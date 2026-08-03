@@ -385,7 +385,7 @@ $(document).ready(function() {
                 name: name,
                 price: price,
                 image: image,
-                quantity: 1
+                quantity: 0
             });
         }
         
